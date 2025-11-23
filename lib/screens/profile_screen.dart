@@ -16,141 +16,176 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Profile'),
         elevation: 0,
+        backgroundColor: Colors.yellow[700],
+        foregroundColor: Colors.brown[900],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Profile Header
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(24.0),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.white,
-                    child: Icon(
-                      Icons.person,
-                      size: 50,
-                      color: Theme.of(context).colorScheme.primary,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.yellow[50]!,
+              Colors.yellow[100]!,
+            ],
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Profile Header
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(24.0),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.yellow[600]!,
+                      Colors.yellow[700]!,
+                    ],
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Colors.brown[900],
+                      child: Icon(
+                        Icons.person,
+                        size: 50,
+                        color: Colors.yellow[100],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'FBLA Member',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    selectedChapter,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: Colors.white.withOpacity(0.9),
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            
-            // Profile Information
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _ProfileSection(
-                    title: 'Chapter Information',
-                    children: [
-                      _InfoTile(
-                        icon: Icons.school,
-                        label: 'Chapter',
-                        value: selectedChapter,
-                      ),
-                      _InfoTile(
-                        icon: Icons.location_on,
-                        label: 'Region',
-                        value: 'United States',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  
-                  _ProfileSection(
-                    title: 'Account',
-                    children: [
-                      ListTile(
-                        leading: const Icon(Icons.settings),
-                        title: const Text('Settings'),
-                        trailing: const Icon(Icons.chevron_right),
-                        onTap: () {
-                          // Navigate to settings
-                        },
-                      ),
-                      ListTile(
-                        leading: const Icon(Icons.help_outline),
-                        title: const Text('Help & Support'),
-                        trailing: const Icon(Icons.chevron_right),
-                        onTap: () {
-                          // Navigate to help
-                        },
-                      ),
-                      ListTile(
-                        leading: const Icon(Icons.info_outline),
-                        title: const Text('About'),
-                        trailing: const Icon(Icons.chevron_right),
-                        onTap: () {
-                          // Show about dialog
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  
-                  // Sign Out Button
-                  SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton.icon(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text('Sign Out'),
-                            content: const Text('Are you sure you want to sign out?'),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text('Cancel'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                  onSignOut();
-                                },
-                                child: const Text('Sign Out'),
-                              ),
-                            ],
+                    const SizedBox(height: 16),
+                    Text(
+                      'FBLA Member',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: Colors.brown[900],
+                            fontWeight: FontWeight.bold,
                           ),
-                        );
-                      },
-                      icon: const Icon(Icons.logout),
-                      label: const Text('Sign Out'),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        side: BorderSide(
-                          color: Theme.of(context).colorScheme.error,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      selectedChapter,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: Colors.brown[800],
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+            
+              // Profile Information
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _ProfileSection(
+                      title: 'Chapter Information',
+                      children: [
+                        _InfoTile(
+                          icon: Icons.school,
+                          label: 'Chapter',
+                          value: selectedChapter,
+                        ),
+                        _InfoTile(
+                          icon: Icons.location_on,
+                          label: 'Region',
+                          value: 'United States',
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                    
+                    _ProfileSection(
+                      title: 'Account',
+                      children: [
+                        ListTile(
+                          leading: Icon(Icons.settings, color: Colors.yellow[700]),
+                          title: const Text('Settings'),
+                          trailing: Icon(Icons.chevron_right, color: Colors.brown[800]),
+                          onTap: () {
+                            // Navigate to settings
+                          },
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.help_outline, color: Colors.yellow[700]),
+                          title: const Text('Help & Support'),
+                          trailing: Icon(Icons.chevron_right, color: Colors.brown[800]),
+                          onTap: () {
+                            // Navigate to help
+                          },
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.info_outline, color: Colors.yellow[700]),
+                          title: const Text('About'),
+                          trailing: Icon(Icons.chevron_right, color: Colors.brown[800]),
+                          onTap: () {
+                            // Show about dialog
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                    
+                    // Sign Out Button
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton.icon(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              backgroundColor: Colors.yellow[50],
+                              title: Text(
+                                'Sign Out',
+                                style: TextStyle(color: Colors.brown[900]),
+                              ),
+                              content: Text(
+                                'Are you sure you want to sign out?',
+                                style: TextStyle(color: Colors.brown[800]),
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text(
+                                    'Cancel',
+                                    style: TextStyle(color: Colors.brown[800]),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    onSignOut();
+                                  },
+                                  child: Text(
+                                    'Sign Out',
+                                    style: TextStyle(color: Colors.yellow[800]),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        icon: Icon(Icons.logout, color: Colors.brown[800]),
+                        label: Text(
+                          'Sign Out',
+                          style: TextStyle(color: Colors.brown[800]),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          side: BorderSide(
+                            color: Colors.brown[800]!,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -175,6 +210,7 @@ class _ProfileSection extends StatelessWidget {
           title,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
+                color: Colors.brown[900],
               ),
         ),
         const SizedBox(height: 12),
@@ -202,7 +238,7 @@ class _InfoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(icon),
+      leading: Icon(icon, color: Colors.yellow[700]),
       title: Text(label),
       subtitle: Text(value),
     );

@@ -51,107 +51,124 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       appBar: AppBar(
         title: const Text('Chatbot Help'),
         elevation: 0,
+        backgroundColor: Colors.yellow[700],
+        foregroundColor: Colors.brown[900],
       ),
-      body: Column(
-        children: [
-          // Chat messages
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(16.0),
-              itemCount: _messages.length,
-              itemBuilder: (context, index) {
-                return _ChatBubble(message: _messages[index]);
-              },
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.yellow[50]!,
+              Colors.yellow[100]!,
+            ],
           ),
-          
-          // Quick suggestions
-          Container(
-            height: 80,
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              children: [
-                _QuickSuggestion(
-                  text: 'Competition Info',
-                  onTap: () {
-                    _messageController.text = 'Tell me about competitions';
-                    _sendMessage();
-                  },
-                ),
-                const SizedBox(width: 8),
-                _QuickSuggestion(
-                  text: 'Chapter Resources',
-                  onTap: () {
-                    _messageController.text = 'What resources are available?';
-                    _sendMessage();
-                  },
-                ),
-                const SizedBox(width: 8),
-                _QuickSuggestion(
-                  text: 'Event Calendar',
-                  onTap: () {
-                    _messageController.text = 'Show me upcoming events';
-                    _sendMessage();
-                  },
-                ),
-                const SizedBox(width: 8),
-                _QuickSuggestion(
-                  text: 'Study Tips',
-                  onTap: () {
-                    _messageController.text = 'Give me study tips';
-                    _sendMessage();
-                  },
-                ),
-              ],
+        ),
+        child: Column(
+          children: [
+            // Chat messages
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.all(16.0),
+                itemCount: _messages.length,
+                itemBuilder: (context, index) {
+                  return _ChatBubble(message: _messages[index]);
+                },
+              ),
             ),
-          ),
-          
-          // Message input
-          Container(
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  spreadRadius: 1,
-                  blurRadius: 5,
-                  offset: const Offset(0, -3),
-                ),
-              ],
+            
+            // Quick suggestions
+            Container(
+              height: 80,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                children: [
+                  _QuickSuggestion(
+                    text: 'Competition Info',
+                    onTap: () {
+                      _messageController.text = 'Tell me about competitions';
+                      _sendMessage();
+                    },
+                  ),
+                  const SizedBox(width: 8),
+                  _QuickSuggestion(
+                    text: 'Chapter Resources',
+                    onTap: () {
+                      _messageController.text = 'What resources are available?';
+                      _sendMessage();
+                    },
+                  ),
+                  const SizedBox(width: 8),
+                  _QuickSuggestion(
+                    text: 'Event Calendar',
+                    onTap: () {
+                      _messageController.text = 'Show me upcoming events';
+                      _sendMessage();
+                    },
+                  ),
+                  const SizedBox(width: 8),
+                  _QuickSuggestion(
+                    text: 'Study Tips',
+                    onTap: () {
+                      _messageController.text = 'Give me study tips';
+                      _sendMessage();
+                    },
+                  ),
+                ],
+              ),
             ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _messageController,
-                    decoration: InputDecoration(
-                      hintText: 'Type your message...',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(24),
+            
+            // Message input
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: Colors.yellow[50],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(0, -3),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _messageController,
+                      decoration: InputDecoration(
+                        hintText: 'Type your message...',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(24),
+                          borderSide: BorderSide(color: Colors.yellow[800]!),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 10,
+                        ),
                       ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 10,
-                      ),
+                      onSubmitted: (_) => _sendMessage(),
                     ),
-                    onSubmitted: (_) => _sendMessage(),
                   ),
-                ),
-                const SizedBox(width: 8),
-                CircleAvatar(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  child: IconButton(
-                    icon: const Icon(Icons.send, color: Colors.white),
-                    onPressed: _sendMessage,
+                  const SizedBox(width: 8),
+                  CircleAvatar(
+                    backgroundColor: Colors.yellow[700],
+                    child: IconButton(
+                      icon: const Icon(Icons.send, color: Color(0xFF5D4037)), // brown[900] as hex,
+                      onPressed: _sendMessage,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -178,12 +195,15 @@ class _ChatBubble extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
           color: message.isUser
-              ? Theme.of(context).colorScheme.primary
-              : Colors.grey[200],
+              ? Colors.yellow[700]
+              : Colors.yellow[100],
           borderRadius: BorderRadius.circular(20).copyWith(
             bottomRight: message.isUser ? const Radius.circular(4) : null,
             bottomLeft: !message.isUser ? const Radius.circular(4) : null,
           ),
+          border: message.isUser
+              ? null
+              : Border.all(color: Colors.yellow[300]!),
         ),
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * 0.75,
@@ -191,7 +211,7 @@ class _ChatBubble extends StatelessWidget {
         child: Text(
           message.text,
           style: TextStyle(
-            color: message.isUser ? Colors.white : Colors.black87,
+            color: message.isUser ? Colors.brown[900] : Colors.brown[800],
             fontSize: 16,
           ),
         ),
@@ -216,13 +236,16 @@ class _QuickSuggestion extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: Colors.grey[100],
+          color: Colors.yellow[200],
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.grey[300]!),
+          border: Border.all(color: Colors.yellow[400]!),
         ),
         child: Text(
           text,
-          style: const TextStyle(fontSize: 14),
+          style: TextStyle(
+            fontSize: 14,
+            color: Colors.brown[800],
+          ),
         ),
       ),
     );

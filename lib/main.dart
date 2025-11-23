@@ -15,8 +15,17 @@ class FBLAApp extends StatelessWidget {
     return MaterialApp(
       title: 'FBLA Mobile App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.yellow[700]!,
+          primary: Colors.yellow[700]!,
+          secondary: Colors.orange[600]!,
+        ),
         useMaterial3: true,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.yellow[700],
+          foregroundColor: Colors.brown[900],
+          elevation: 0,
+        ),
       ),
       home: const AuthWrapper(),
       debugShowCheckedModeBanner: false,
